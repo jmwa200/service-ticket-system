@@ -1,0 +1,19 @@
+<!-- ticket_list.html -->
+<table>
+  <tr>
+    <th>Ticket ID</th>
+    <th>Client</th>
+    <th>Technician</th>
+    <th>Total Charges</th>
+    <th>Payment Status</th>
+  </tr>
+  {% for ticket in tickets %}
+  <tr>
+    <td>{{ ticket.ticket_id }}</td>
+    <td>{{ ticket.client.name }}</td>
+    <td>{{ ticket.technician.name }}</td>
+    <td>{{ ticket.total_charges }}</td>
+    <td>{{ ticket.payment_status }}</td>
+  </tr>
+  {% endfor %}
+</table>

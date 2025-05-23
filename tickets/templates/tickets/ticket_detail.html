@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket {{ ticket.ticket_id }}</title>
+</head>
+<body>
+    <h1>{{ ticket.ticket_id }}</h1>
+    <p><strong>Client:</strong> {{ ticket.client.name }}</p>
+    <p><strong>Work Status:</strong> {{ ticket.work_status }}</p>
+    <p><strong>Approval Status:</strong> {{ ticket.approval_status }}</p>
+    
+    {% if ticket.work_status != "Completed" and request.user == ticket.technician.user %}
+        <form method="post" action="{% url 'mark_completed' ticket.ticket_id %}">
+            {% csrf_token %}
+            <button type="submit">Mark as Completed</button>
+        </form>
+    {% endif %}
+</body>
+</html>

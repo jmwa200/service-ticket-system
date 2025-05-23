@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ticket List</title>
+</head>
+<body>
+    <h1>Tickets</h1>
+    <ul>
+        {% for ticket in tickets %}
+            <li>
+                <a href="{% url 'ticket_detail' ticket.ticket_id %}">{{ ticket.ticket_id }}</a> - 
+                {{ ticket.client.name }} ({{ ticket.work_status }} | {{ ticket.approval_status }})
+                {% if ticket.approval_status == "Pending Review" and request.user.has_perm('tickets.can_approve') %}
+                    <a href="{% url 'approve_ticket' ticket.ticket_id %}">Review</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

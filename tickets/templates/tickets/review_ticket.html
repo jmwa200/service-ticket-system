@@ -1,0 +1,9 @@
+<h2>Review Ticket {{ ticket.ticket_id }}</h2>
+<p><strong>Client:</strong> {{ ticket.client.name }}</p>
+<p><strong>Work Done:</strong> {{ ticket.scope_of_work }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" name="action" value="approve" class="btn btn-primary">Approve</button>
+    <button type="submit" name="action" value="reject" class="btn btn-danger">Reject</button>
+</form>
